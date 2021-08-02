@@ -19,6 +19,9 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.validation.BindingResult;
 
+import org.springframework.validation.annotation.Validated;
+
+
 @Controller
 @RequestMapping("/user")
 @Slf4j
@@ -34,7 +37,7 @@ public class SignupController {
 		return "user/signup";
 	}
 	@PostMapping("/signup")
-	public String posSignup(Model model,Locale locale,@ModelAttribute SignupForm form,BindingResult bindingResult) {
+	public String posSignup(Model model,Locale locale,@ModelAttribute @Validated SignupForm form,BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
 			//NG : ユーザー登録画面に戻ります。
 			return getSignup(model,locale,form);

@@ -33,9 +33,14 @@ public class SignupForm {
 	private String userName;
 	
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
+	@NotNull
 	private Date birthday;
 	
+	@Min(20)
+	@Max(100)
 	private Integer age;
+	
+	@NotNull
 	private Integer gender;
 	
 }
