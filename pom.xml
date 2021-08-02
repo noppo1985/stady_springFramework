@@ -17,6 +17,11 @@
 		<java.version>11</java.version>
 	</properties>
 	<dependencies>
+		<!-- thymeleaf-layout-dialect -->
+		<dependency>
+			<groupId>nz.net.ultraq.thymeleaf</groupId>
+			<artifactId>thymeleaf-layout-dialect</artifactId>		
+		</dependency>
 		<!-- jquery -->
 		<dependency>
 			<groupId>org.webjars</groupId>
