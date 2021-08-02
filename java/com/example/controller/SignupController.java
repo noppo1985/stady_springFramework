@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 
 import com.example.application.service.UserApplicationService;
+import com.example.form.GroupOrder;
 import com.example.form.SignupForm;
 
 import lombok.extern.slf4j.Slf4j;
@@ -37,7 +38,7 @@ public class SignupController {
 		return "user/signup";
 	}
 	@PostMapping("/signup")
-	public String posSignup(Model model,Locale locale,@ModelAttribute @Validated SignupForm form,BindingResult bindingResult) {
+	public String posSignup(Model model,Locale locale,@ModelAttribute @Validated(GroupOrder.class) SignupForm form,BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
 			//NG : ユーザー登録画面に戻ります。
 			return getSignup(model,locale,form);

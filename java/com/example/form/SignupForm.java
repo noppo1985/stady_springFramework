@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
-import org.springframework.format.annotation.DateTimeFormat;
+//import org.springframework.format.annotation.DateTimeFormat;
 
 
 
@@ -20,27 +20,27 @@ import lombok.Data;
 
 @Data
 public class SignupForm {
-	@NotBlank
-	@Email
+	@NotBlank(groups = ValidGroup1.class)
+	@Email(groups = ValidGroup2.class)
 	private String userId;
 	
-	@NotBlank
-	@Length(min = 4 ,max = 100)
-	@Pattern(regexp="^[a-zA-z0-9]+$")
+	@NotBlank(groups = ValidGroup1.class)
+	@Length(min = 4 ,max = 100,groups = ValidGroup2.class)
+	@Pattern(regexp="^[a-zA-z0-9]+$",groups = ValidGroup2.class)
 	private String password;
 	
-	@NotBlank
+	@NotBlank(groups = ValidGroup1.class)
 	private String userName;
 	
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
-	@NotNull
+	@NotNull(groups = ValidGroup1.class)
 	private Date birthday;
 	
-	@Min(20)
-	@Max(100)
+	@Min(value =  20,groups = ValidGroup2.class)
+	@Max(value = 100,groups = ValidGroup1.class)
 	private Integer age;
 	
-	@NotNull
+	@NotNull(groups = ValidGroup1.class)
 	private Integer gender;
 	
 }
