@@ -46,6 +46,14 @@
 		*
 		from
 			m_user
+		<where>
+			<if test="userId != null">
+				user_id like '%' || #{userId} || '%' 
+			</if>
+			<if test="userName != null">
+				and user_name like '%' || #{userName} || '%' 
+			</if>
+		</where>
 	</select>
 	
 	<!--ユーザー1件取得-->
@@ -75,5 +83,9 @@
 			m_user
 		where
 			user_id= #{userId}			
-	</update>	
+	</update>
+	
+	
+	
+	
 </mapper>
