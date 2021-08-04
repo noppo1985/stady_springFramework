@@ -13,4 +13,5 @@ public class MUser {
 	private Integer gender;
 	private Integer departmentId;
 	private String role;	
+	private Department department;
 }
