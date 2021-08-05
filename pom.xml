@@ -17,6 +17,17 @@
 		<java.version>11</java.version>
 	</properties>
 	<dependencies>
+		<!--SpringSecurity-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<!--Thyemeleaf拡張ライブラリ(セキュリティ)-->		
+		<dependency>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-springsecurity5</artifactId>
+		</dependency>
+		
 		<!--Spring AOP-->
 		<dependency>
 			<groupId>org.springframework</groupId>
