@@ -5,8 +5,11 @@ import java.util.Locale;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -66,4 +69,34 @@ public class SignupController {
 		
 	}
 	
+	/*データベース関連の例外処理*/
+	@ExceptionHandler(DataAccessException.class)
+	public String dataAccessExceptionHandler(DataAccessException e,Model model) {
+
+		//空文字セット
+		model.addAttribute("error","");
+		
+		//メッセージをModelに登録
+		model.addAttribute("message","SignupControllerで例外が発生しました。");
+		
+		model.addAttribute("statis",HttpStatus.INTERNAL_SERVER_ERROR);
+		
+		return "error";
+			
+	}
+	
+	/**その他の例外処理*/
+	@ExceptionHandler(Exception.class)
+	public String exceptionHandler(Exception e,Model model) {
+		//空文字セット
+		model.addAttribute("error","");
+		
+		//メッセージをModelに登録
+		model.addAttribute("message","SignupControllerで例外が発生しました。");
+		
+		model.addAttribute("statis",HttpStatus.INTERNAL_SERVER_ERROR);
+		
+		return "error";
+		
+	}
 }
