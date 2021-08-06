@@ -5,16 +5,17 @@
       >
 <head>
 <title>ユーザー一覧</title>
+<!--CSS読込-->
 <link rel="stylesheet" th:href="@{/css/user/list.css}">
+<!--JS読込-->
+<script th:src="@{/js/user/detail.js}" defer></script>
 </head>
 <body>
 	<div layout:fragment="content">
 		<div class="header border-botｔom">
 			<h1 class="h2">ユーザー詳細</h1>
 		</div>
-		<form id="user-detail-form" method="post" th:action="@{/user/detail}" class="form-signup" th:object="${userDetailForm}">
-		<!--<form id="user-detail-form" method="post" th:action="@{user/detail}" class="form-signup" th:object="${userDetailForm}">-->
-		
+		<form id="user-detail-form" method="post" th:action="@{/user/detail}" class="form-signup" th:object="${userDetailForm}">		
 			<input type="hidden" th:field="*{userId}">
 			<!--ユーザー詳細情報-->
 			<table class="table table-striped tabole-bordered table-hover">
@@ -64,6 +65,13 @@
 				<!--更新ボタン-->
 				<button class="btn btn-primary" type="submit" name = "update">更新</button>
 			</div>
+			<!--RESTボタンエリア-->
+			<div class="text-center mt-2">
+			<!--削除ボタン-->
+				<button id="btn-delete" class="btn btn-danger" type="button" >削除(REST)</button>
+				<button id="btn-update" class="btn btn-btn-primary" type="button" >更新(REST)</button>
+			</div>
+			
 			<!--給与情報-->
 			
 			<th:block th:if="*{salaryList != null and salaryList.size() > 0}">
