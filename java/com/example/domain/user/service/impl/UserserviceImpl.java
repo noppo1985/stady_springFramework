@@ -3,6 +3,7 @@ package com.example.domain.user.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,14 +13,21 @@ import com.example.repository.UserMapper;
 
 @Service
 public class UserserviceImpl implements UserService {
+
 	@Autowired
 	private UserMapper mapper;
+
+	@Autowired
+	private PasswordEncoder encoder;
 	
 	/*ユーザー登録*/
 	@Override
 	public void signup(MUser user) {
 		user.setDepartmentId(1);
 		user.setRole("ROLE_GENERAL");
+		
+		String rawPassword = user.getPassword();
+		user.setPassword(encoder.encode(rawPassword));
 		mapper.insertOne(user);
 	}
 	
@@ -39,7 +47,11 @@ public class UserserviceImpl implements UserService {
 	@Transactional
 	@Override
 	public void updateUserOne(String userId,String password,String userName) {
-		mapper.updateOne(userId, password, userName);
+
+		//パスワード暗号化
+		String encriptPassowrd = encoder.encode(password);
+		
+		mapper.updateOne(userId, encriptPassowrd, userName);
 		//例外発生させる。
 		//int i = 1 / 0;
 	}
