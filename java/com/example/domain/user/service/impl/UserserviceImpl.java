@@ -61,4 +61,11 @@ public class UserserviceImpl implements UserService {
 	public void deleteUserOne(String userId) {
 		mapper.deleteOne(userId);
 	}
+	
+	/*ログインユーザー情報取得*/
+	@Override
+	public MUser getLoginUser(String userId) {
+		return mapper.findLoginUser(userId);
+	}
+	
 }

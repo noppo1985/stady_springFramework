@@ -14,7 +14,7 @@ INSERT INTO m_user(
 	)
 VALUES(
 	'system@co.jp'
-	,'password'
+	,'$2a$10$LZh3/fVe3Lnnu9Tn5a8wLeAQdW6zwMIHC8N9KHM9J56S41zi0NV02'
 	,'システム管理者'
 	,'2000-01-01'
 	,21
@@ -24,7 +24,7 @@ VALUES(
 	),
 	(
 	'user@co.jp'
-	,'password'
+	,'$2a$10$LZh3/fVe3Lnnu9Tn5a8wLeAQdW6zwMIHC8N9KHM9J56S41zi0NV02'
 	,'ユーザー1'
 	,'2000-01-01'
 	,21

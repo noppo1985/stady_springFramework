@@ -115,7 +115,13 @@
 			user_id= #{userId}			
 	</update>
 	
-	
-	
-	
+	<!--ログインユーザー情報取得-->
+	<select id="findLoginUser" resultType="MUser">
+		select
+			*
+		from
+			m_user
+		Where
+			user_id = #{userId} 
+	</select>
 </mapper>
