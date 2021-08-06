@@ -64,7 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			
 		
 		//CSRF対策を無効に設定
-		http.csrf().disable();
+		//http.csrf().disable();
 	}
 	
 	/**認証の設定*/
