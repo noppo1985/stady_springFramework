@@ -1,6 +1,7 @@
 package com.example.rest;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +21,7 @@ import org.springframework.validation.annotation.Validated;
 import com.example.domain.user.model.MUser;
 import com.example.domain.user.service.UserService;
 import com.example.form.UserDetailForm;
+import com.example.form.UserListForm;
 import com.example.form.GroupOrder;
 import com.example.form.SignupForm;
 
@@ -35,6 +38,19 @@ public class UserRestController {
 	
 	@Autowired
 	private MessageSource messageSource;  
+
+	/**ユーザーを検索 */
+	@GetMapping("/get/list")
+	public List<MUser> getUserList(UserListForm form) {
+		//form　をMuserに変換 
+		MUser user = modelMapper.map(form, MUser.class);
+		
+		List<MUser> userList = userService.getUsers(user);		
+		
+		return userList;
+	}
+
+	
 	
 	/**ユーザーを登録 */
 	@PostMapping("/signup/rest")
