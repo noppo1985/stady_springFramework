@@ -9,13 +9,14 @@
 	<!--js読込-->
 	<script th:src="@{/webjars/jquery/jquery.min.js/}" defer></script>
 	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js/}" defer></script>
+	<script th:src="@{/js/user/signup.js/}" defer></script>
 	
 	<title th:text="#{user.signup.title}"></title>
 </head>
 <body class="bg-light">
 	
 	<h1 th:text="#{user.signup.title}"></h1>
-	<form id="siginup-form" method="post" action="/user/signup" class="form-siginup" th:object="${signupForm}">
+	<form id="signup-form" method="post" action="/user/signup" class="form-signup" th:object="${signupForm}">
 		<!--ユーザーID-->
 		<div class="form-group">
 			<label for="userId" th:text="#{userId}"></label>
@@ -57,6 +58,7 @@
 		</div>
 		<!--登録ボタン-->
 		<input type="submit" th:value="#{user.signup.btn}" class="btn btn-primary w-100 mt-3"/>
+		<button id="btn-signup" type="button" class="btn btn-primary w-100 mt-3">ユーザー登録(REST)</button>
 		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 	</form>
 </body>
