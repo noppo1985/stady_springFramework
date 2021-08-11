@@ -61,7 +61,12 @@ public class UserServiceImple2 implements UserService{
 	@Transactional
 	@Override
 	public void updateUserOne(String userId, String password, String userName) {
-		// TODO 自動生成されたメソッド・スタブ
+		
+		//パスワード暗号化
+		String encriptPassword = encoder.encode(password);
+		
+		//ユーザー更新
+		repository.updateUser(userId, encriptPassword, userName);
 		
 	}
 	
@@ -76,10 +81,7 @@ public class UserServiceImple2 implements UserService{
 	/**ログインユーザー取得*/
 	@Override
 	public MUser getLoginUser(String userId) {
-		Optional<MUser> option = repository.findById(userId);
-		MUser user = option.orElse(null);	
-		return user;
-		
+		return repository.findLoginUser(userId);		
 	}
 	
 	
